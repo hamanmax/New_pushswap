@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 11:01:07 by mhaman            #+#    #+#             */
-/*   Updated: 2021/09/28 19:07:49 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/09/29 23:59:25 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int fill_list(t_list **pile, int argc, char **argv)
 	i = 1;
 	j = 0;
 	str = argv[i];
+	
+	int k = 0;
 	while (i < argc)
 	{
 		while (str[j] == ' ')
@@ -86,17 +88,21 @@ int fill_list(t_list **pile, int argc, char **argv)
 		}
 		else
 		{
+			k++;
 			if ((*pile)->data.chunk == -1)
 			{
 				(*pile)->data.value = nbr;
 				(*pile)->data.chunk = 0;
 			}
-			create_node(pile,(int)nbr);
+			else
+				create_node(pile,(int)nbr);
 		}
 		while (str[j] >= '0' && str[j] <= '9' || str[j] == '-')
 		{
 			j++;
 		}
+		while (str[j] == ' ')
+			j++;
 		if (str[j] == 0)
 		{
 			i++;
@@ -115,7 +121,6 @@ int	check_for_doublon(t_list *pile)
 
 	while (pile->next)
 	{
-		dprintf(2,"[%d]\t[%d]\n",pile->data.value, tmp->data.value);
 		if (pile->data.value == tmp->data.value)
 		{
 			ft_printf("Error\n");
@@ -137,6 +142,36 @@ int	check_for_doublon(t_list *pile)
 		}
 	}
 	return (0);
+}
+
+void calc_order(t_list **pile)
+{
+	t_list *tmp;
+
+	tmp = *pile;
+
+	while ((*pile)->next)
+	{	
+		if ((*pile)->data.value > tmp->data.value)
+			(*pile)->data.chunk++;
+		if (tmp->next)
+			tmp = tmp->next;
+		else
+		{
+			*pile = (*pile)->next;
+			while (tmp->prev)
+				tmp = tmp->prev;
+		}
+	}
+	while (1)
+	{
+		(*pile)->data.value = (*pile)->data.chunk;
+		(*pile)->data.chunk = 0;
+		if ((*pile)->prev)
+			*pile = (*pile)->prev;
+		else
+			break;
+	}
 }
 
 	int main(int argc, char **argv)
@@ -166,4 +201,5 @@ int	check_for_doublon(t_list *pile)
 		ft_printf("Error\n");
 		return (-1);
 	}
+	calc_order(&pilea);
 }
