@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:56:24 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/01 18:09:45 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/01 21:10:00 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	create_node(t_list **lst, int value);
 void	initialize_node(t_list **pile);
 void	move_top_list(t_list **pile);
 void	show_pile_state(t_list *pilea,t_list *pileb);
+void	show_node_info(t_list *node);
 int		pile_size(t_list *pile);
 
 /* Instruction Fonction */
