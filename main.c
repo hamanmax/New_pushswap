@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 11:01:07 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/01 21:13:37 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/01 21:35:55 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int main(int argc, char **argv)
 	t_list *pilea;
 	t_list *pileb;
 
-	initialize_node(&pilea);
-	initialize_node(&pileb);
+	pilea = NULL;
+	pileb = NULL;
 	if (argc == 1)
 	{
 		ft_printf("Error\n");
@@ -42,6 +42,6 @@ int main(int argc, char **argv)
 	calc_order(&pilea);
 	show_pile_state(pilea,pileb);
 	rev_rotate_pile(&pilea);
-	puts("tutututu\n");
 	show_pile_state(pilea,pileb);
+	free(pilea);
 }

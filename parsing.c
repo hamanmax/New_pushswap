@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:52:11 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/01 17:54:22 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/01 21:31:48 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,7 @@ int fill_list(t_list **pile, int argc, char **argv)
 		}
 		else
 		{
-			k++;
-			if ((*pile)->data.chunk == -1)
-			{
-				(*pile)->data.value = nbr;
-				(*pile)->data.chunk = 0;
-			}
-			else
-				create_node(pile,(int)nbr);
+			create_node(pile,(int)nbr);
 		}
 		while (str[j] >= '0' && str[j] <= '9' || str[j] == '-')
 		{
