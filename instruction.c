@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:08:31 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/01 21:12:57 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/06 14:21:51 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,25 @@ void swap_node(t_list **pile)
 
 void push_node(t_list **src, t_list **dst)
 {
-
+    if (*dst == NULL)
+    {
+        *dst = *src;
+        *src = (*src)->next;
+        (*src)->prev = NULL;
+        (*dst)->prev = NULL;
+        (*dst)->next = NULL;
+    }
+    else
+    {
+        (*dst)->prev = (*src);
+        if ((*src)->next)
+        {
+            *src = (*src)->next;
+            (*src)->prev = NULL;
+        }
+        else
+            *src = NULL;
+        (*dst)->prev->next = (*dst);
+        (*dst) = (*dst)->prev;
+    }
 }

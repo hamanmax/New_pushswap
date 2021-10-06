@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 11:01:07 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/01 21:35:55 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/06 14:21:46 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int main(int argc, char **argv)
 	}
 	calc_order(&pilea);
 	show_pile_state(pilea,pileb);
-	rev_rotate_pile(&pilea);
+	puts("tutu\n");
 	show_pile_state(pilea,pileb);
-	free(pilea);
 }

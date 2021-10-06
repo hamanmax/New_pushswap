@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:35:42 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/01 21:37:21 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/06 14:20:37 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int pile_size(t_list *pile)
 
     i = 0;
     move_top_list( &pile);
-    while (pile->next)
+    while (pile && pile->next)
     {
         i++;
         pile = pile->next;
@@ -44,7 +44,7 @@ int pile_size(t_list *pile)
 
 void move_top_list(t_list **pile)
 {
-    while ((*pile)->prev)
+    while (*pile && (*pile)->prev)
     {
         *pile = (*pile)->prev;
     }
@@ -72,7 +72,6 @@ void show_pile_state(t_list *pilea, t_list *pileb)
             dprintf(2,"R\t%d\n", pileb->data.value);
         else
             dprintf(2,"%d\tR\n",pilea->data.value);
-        show_node_info(pilea);
         if (pilea != NULL)
         pilea = pilea->next;
         if (pileb != NULL)
