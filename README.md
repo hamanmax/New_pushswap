@@ -47,3 +47,27 @@ https://sketchboard.me/FCT9dMd4OaPN#/
 12
 
 3 4 5 6 7 8 9 10 12 1 2
+
+
+Si stack_a peut se contenir entre Stack_b et stack_b->next alors on peut le push | stack_b < stack_a > stack_b->bot
+
+sinon comptez le nombre de modification qu'il faut pour que ce soit le cas en stack_b
+
+Enregistrer ce nombre
+
+incrementer l'index de la pile_a
+
+refaire le test de la stack avec la stack_b
+
+etc jusqu'a la fin de la stack a
+
+garder la valeur la plus faible en nombre d'operation (Comment ?)
+
+garder un pointeur de stack_a sur la valeur la plus faible
+
+tant qu'il existe un stack_a-> prev rotate
+
+
+
+
+
