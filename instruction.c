@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:08:31 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/06 14:21:51 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/07 15:14:32 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,53 @@
 
 void show_node_info(t_list *node)
 {
-    dprintf(2,"Chunk\t=%d\nValue\t=%d\nCurrent\t=%p\nPrev\t=%p\nNext\t=%p\n\n",node->data.chunk,node->data.value,node,node->prev,node->next);
+    dprintf(2,"Value\t=%d\nCurrent\t=%p\nPrev\t=%p\nNext\t=%p\n\n",node->value,node,node->prev,node->next);
 }
 
 
-void rotate_pile(t_list **pile)
+void rotate_stack(t_list **stack)
 {
     t_list *tmp;
-    tmp = *pile;
-    while ((*pile)->next)
-        *pile = (*pile)->next;
-    tmp->prev = *pile;
-    (*pile)->next = tmp;
-    tmp = (*pile)->prev;
+    tmp = *stack;
+    while ((*stack)->next)
+        *stack = (*stack)->next;
+    tmp->prev = *stack;
+    (*stack)->next = tmp;
+    tmp = (*stack)->prev;
     tmp->next = NULL;
-    (*pile)->prev = tmp;
-    (*pile)->prev = NULL;
-    move_top_list(pile);
+    (*stack)->prev = tmp;
+    (*stack)->prev = NULL;
+    move_top_list(stack);
 
 }
 
-void rev_rotate_pile(t_list **pile)
+void rev_rotate_stack(t_list **stack)
 {
     t_list *tmp;
 
-    tmp = *pile;
-    (*pile)->next->prev = NULL;
-    while ((*pile)->next)
-        *pile = (*pile)->next;
-    tmp->prev = (*pile);
+    tmp = *stack;
+    (*stack)->next->prev = NULL;
+    while ((*stack)->next)
+        *stack = (*stack)->next;
+    tmp->prev = (*stack);
     tmp->next = NULL;
-    (*pile)->next = tmp;
-    (*pile) = (*pile)->next;
-    move_top_list((pile));
+    (*stack)->next = tmp;
+    (*stack) = (*stack)->next;
+    move_top_list((stack));
 
 }
-void swap_node(t_list **pile)
+void swap_node(t_list **stack)
 {
     void *next;
     void *prev;
 
-    (*pile)->prev = (*pile)->next;
-    (*pile)->next = (*pile)->next->next;
-    (*pile) = (*pile)->prev;
-    (*pile)->next->prev = (*pile)->prev;
-    (*pile)->next = (*pile)->prev;
-    (*pile)->prev = NULL;
-    move_top_list(pile);
+    (*stack)->prev = (*stack)->next;
+    (*stack)->next = (*stack)->next->next;
+    (*stack) = (*stack)->prev;
+    (*stack)->next->prev = (*stack)->prev;
+    (*stack)->next = (*stack)->prev;
+    (*stack)->prev = NULL;
+    move_top_list(stack);
 }
 
 void push_node(t_list **src, t_list **dst)

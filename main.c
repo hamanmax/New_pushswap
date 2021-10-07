@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 11:01:07 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/06 14:21:46 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/07 15:51:49 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int main(int argc, char **argv)
 {
-	t_list *pilea;
-	t_list *pileb;
+	t_list *stack_a;
+	t_list *stack_b;
 
-	pilea = NULL;
-	pileb = NULL;
+	stack_a = NULL;
+	stack_b = NULL;
 	if (argc == 1)
 	{
 		ft_printf("Error\n");
@@ -29,18 +29,17 @@ int main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (-1);
 	}
-	if (fill_list(&pilea, argc, argv) == -1)
+	if (fill_list(&stack_a, argc, argv) == -1)
 	{
 		ft_printf("Error\n");
 		return (-1);
 	}
-	if (check_for_doublon(pilea) == -1)
+	if (check_for_doublon(stack_a) == -1)
 	{
 		ft_printf("Error\n");
 		return (-1);
 	}
-	calc_order(&pilea);
-	show_pile_state(pilea,pileb);
-	puts("tutu\n");
-	show_pile_state(pilea,pileb);
+	calc_order(&stack_a);
+	show_stack_state(stack_a,stack_b);
+	//algorithm(&stack_a,&stack_b);
 }
