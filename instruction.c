@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:08:31 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/07 15:14:32 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/11 15:22:23 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void swap_node(t_list **stack)
 
 void push_node(t_list **src, t_list **dst)
 {
+    move_top_list(src);
     if (*dst == NULL)
     {
         *dst = *src;

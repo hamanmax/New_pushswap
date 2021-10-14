@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:35:42 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/07 15:33:36 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/13 11:19:44 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,53 @@ void move_bot_list(t_list **stack)
     }
 }
 
-t_list *move_above_node(t_list **stack)
+
+void    *move_above_node(t_list **stack)
 {
     if ((*stack)->prev) 
+    {
         *stack = (*stack)->prev;
-    else
-        return (NULL);
-    return (*stack);
+        return(*stack);
+    }
+    return(NULL);
+}
+
+void    move_below_node(t_list **stack)
+{
+    if ((*stack)->next) 
+        *stack = (*stack)->next;
+}
+
+t_list *ptr_first_node(t_list *stack)
+{
+    while (stack && (stack)->next)
+    {
+        stack = (stack)->next;
+    }
+    return (stack);
+}
+
+t_list *ptr_last_node(t_list *stack)
+{
+    while (stack && (stack)->prev)
+    {
+        stack = (stack)->prev;
+    }
+    return (stack);
+}
+
+t_list *ptr_prev_node(t_list *stack)
+{
+    if (stack->prev)
+        return(stack->prev);
+    return (ptr_last_node(stack));
+}
+
+t_list *ptr_next_node(t_list *stack)
+{
+    if (stack->next)
+        return(stack->prev);
+    return (ptr_first_node(stack));
 }
 
 void show_stack_state(t_list *stack_a, t_list *stack_b)
