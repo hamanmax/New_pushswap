@@ -10,19 +10,19 @@ https://sketchboard.me/FCT9dMd4OaPN#/
 
 1 5 2 7 12 6 9 10 8 11 
 
-3 4
+4 3
 
 1 5 2 7 12 6 9 10 8
 
-3 4 11
+4 3 11
 
 1 5 2 7 12 6 9 10
 
-11 3 4 8
+4 3 11 8
 
 1 5 2 7 12 6 9
 
-11 3 4 8 10
+8 4 3 11 10
 
 1 5 2 7 12 6
 
@@ -66,8 +66,3 @@ garder la valeur la plus faible en nombre d'operation (Comment ?)
 garder un pointeur de stack_a sur la valeur la plus faible
 
 tant qu'il existe un stack_a-> prev rotate
-
-
-
-
-

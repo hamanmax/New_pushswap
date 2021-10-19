@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 11:01:07 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/13 11:21:35 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/19 17:34:33 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int main(int argc, char **argv)
 		return (-1);
 	}
 	calc_order(&stack_a);
-	algorithm(&stack_a,&stack_b);
 	move_top_list(&stack_b);
 	move_top_list(&stack_a);
+	algorithm(&stack_a,&stack_b);
 	free(stack_a);
 	free(stack_b);
 }

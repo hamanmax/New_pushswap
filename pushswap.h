@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:56:24 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/13 11:59:04 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/19 18:17:03 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	move_top_list(t_list **stack);
 void	move_bot_list(t_list **stack);
 void    *move_above_node(t_list **stack);
 void    move_below_node(t_list **stack);
-t_list	*ptr_first_node(t_list *stack);
+t_list	*ptr_top_node(t_list *stack);
 t_list	*ptr_last_node(t_list *stack);
 t_list	*ptr_next_node(t_list *stack);
 t_list	*ptr_prev_node(t_list *stack);
