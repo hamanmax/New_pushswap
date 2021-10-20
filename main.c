@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 11:01:07 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/20 20:30:25 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/20 22:06:32 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,20 @@ int main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (-1);
 	}
+	move_top_list(&stack_a);
 	if (check_for_doublon(stack_a) == -1)
 	{
 		ft_printf("Error\n");
 		return (-1);
 	}
 	calc_order(&stack_a);
-	show_stack_state(stack_a,stack_b);
+	//show_stack_state(stack_a,stack_b);
 	move_top_list(&stack_b);
 	move_top_list(&stack_a);
 	algorithm(&stack_a,&stack_b);
-	show_stack_state(stack_a,stack_b);
+	move_top_list(&stack_a);
+	//gshow_stack_state(stack_a,stack_b);
 	free(stack_a);
 	free(stack_b);
+	return (0);
 }

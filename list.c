@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:35:42 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/20 20:24:40 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/20 20:33:56 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void create_node(t_list **lst, int value)
 	temp = malloc(sizeof(t_list));
 	temp->value = value;
     temp->order = value;
-    temp->next = *lst;
-	temp->prev = NULL;
+    temp->prev = *lst;
+	temp->next = NULL;
     if ((*lst))
-	    (*lst)->prev = temp;
+	    (*lst)->next = temp;
 	*lst = temp;
 }
 

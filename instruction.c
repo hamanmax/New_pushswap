@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:08:31 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/20 20:25:00 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/20 22:08:18 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void show_node_info(t_list *node)
 }
 
 
-void rotate_stack(t_list **stack,int code)
+void rev_rotate_stack(t_list **stack,int code)
 {
     t_list *tmp;
     tmp = *stack;
@@ -32,12 +32,12 @@ void rotate_stack(t_list **stack,int code)
     (*stack)->prev = NULL;
     move_top_list(stack);
     if (code == STACK_A)
-        dprintf(1,"ra\n");
+        dprintf(1,"rra\n");
     else
-        dprintf(1,"rb\n");
+        dprintf(1,"rrb\n");
 }
 
-void rev_rotate_stack(t_list **stack,int code)
+void rotate_stack(t_list **stack,int code)
 {
     t_list *tmp;
 
@@ -51,9 +51,9 @@ void rev_rotate_stack(t_list **stack,int code)
     (*stack) = (*stack)->next;
     move_top_list((stack));
     if (code == STACK_A)
-        dprintf(1,"rra\n");
+        dprintf(1,"ra\n");
     else
-        dprintf(1,"rrb\n");
+        dprintf(1,"rb\n");
 
 }
 void swap_node(t_list **stack,int code)

@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 10:26:46 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/20 20:29:51 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/20 22:12:00 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,11 @@ void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 {
 	while (tab[STACK_A]-- > 0)
 	{
-		rev_rotate_stack(stack_a,0);
+		rotate_stack(stack_a,0);
 	}
 	while (tab[STACK_B] > 0)
 	{
-		rev_rotate_stack(stack_b,1);
+		rotate_stack(stack_b,1);
 		tab[STACK_B]--;
 	}
 	push_node(stack_a,stack_b,1);
@@ -140,7 +140,7 @@ void push_back(t_list **stack_a,t_list **stack_b)
 	int maxsize = stack_size(*stack_b);
 	while ((*stack_b)->value != maxsize - 1)
 	{
-		rev_rotate_stack(stack_b,1);
+		rotate_stack(stack_b,1);
 	}
 	while (stack_size(*stack_a) < maxsize)
 	{
@@ -160,8 +160,6 @@ void algorithm(t_list **stack_a, t_list **stack_b)
 	op[STACK_A] = 0;
 	op[STACK_B] = 0;
 	nbop = INT_MAX;
-	if ((*stack_a)->value == stack_size(*stack_a))
-		rotate_stack(stack_a,0);
 	push_node(stack_a, stack_b,1);
 	push_node(stack_a, stack_b,1);
 	while(stack_sorted(*stack_a, *stack_b) == false)

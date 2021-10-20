@@ -89,3 +89,21 @@ Sinon on modifie le Next et le Prev
 
 Si c'est le plus grand de ma liste le mettre dans la transition
 Si c'est le plus petit le mettre dans la transition
+
+
+
+
+3 5 6 2 0 66
+
+3
+5
+6
+2
+0
+66
+
+6   5
+2   3
+0
+66
+
