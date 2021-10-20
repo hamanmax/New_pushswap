@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:35:42 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/19 18:50:00 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/20 20:24:40 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void create_node(t_list **lst, int value)
 
 	temp = malloc(sizeof(t_list));
 	temp->value = value;
+    temp->order = value;
     temp->next = *lst;
 	temp->prev = NULL;
     if ((*lst))
@@ -96,14 +97,14 @@ t_list *ptr_prev_node(t_list *stack)
 {
     if (stack->prev)
         return(stack->prev);
-    return (ptr_top_node(stack));
+    return (ptr_bot_node(stack));
 }
 
 t_list *ptr_next_node(t_list *stack)
 {
     if (stack->next)
         return(stack->next);
-    return (ptr_bot_node(stack));
+    return (ptr_top_node(stack));
 }
 
 void show_stack_state(t_list *stack_a, t_list *stack_b)
@@ -125,11 +126,11 @@ void show_stack_state(t_list *stack_a, t_list *stack_b)
     while (i > 0)
     {
         if (stack_a != NULL && stack_b != NULL)
-            dprintf(2,"%d\t%d\n",stack_a->value,stack_b->value);
+            dprintf(2,"%d\t%d\n",stack_a->order,stack_b->order);
         else if (stack_a == NULL && stack_b)
-            dprintf(2,"R\t%d\n", stack_b->value);
+            dprintf(2,"R\t%d\n", stack_b->order);
         else
-            dprintf(2,"%d\tR\n",stack_a->value);
+            dprintf(2,"%d\tR\n",stack_a->order);
         if (stack_a != NULL)
         stack_a = stack_a->next;
         if (stack_b != NULL)

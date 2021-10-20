@@ -66,3 +66,26 @@ garder la valeur la plus faible en nombre d'operation (Comment ?)
 garder un pointeur de stack_a sur la valeur la plus faible
 
 tant qu'il existe un stack_a-> prev rotate
+
+1 5 2 7 12
+
+Si la valeur est plus petit que next et plus grande que prev on push
+
+Sinon Si la valeur est la plus grande on la met a la fin
+
+Sinon Si la valeur est la plus petite on la met au debut
+
+Sinon on modifie le Next et le Prev
+
+10 11 3 4 6 8 9
+
+9-3-6-4-10  7
+
+9-3-6-2-8 5
+
+4-2-6-2-8 4
+
+9-3-12-2-10 5
+
+Si c'est le plus grand de ma liste le mettre dans la transition
+Si c'est le plus petit le mettre dans la transition

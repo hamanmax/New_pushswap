@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:08:31 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/11 15:22:23 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/20 20:25:00 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void show_node_info(t_list *node)
 }
 
 
-void rotate_stack(t_list **stack)
+void rotate_stack(t_list **stack,int code)
 {
     t_list *tmp;
     tmp = *stack;
@@ -31,10 +31,13 @@ void rotate_stack(t_list **stack)
     (*stack)->prev = tmp;
     (*stack)->prev = NULL;
     move_top_list(stack);
-
+    if (code == STACK_A)
+        dprintf(1,"ra\n");
+    else
+        dprintf(1,"rb\n");
 }
 
-void rev_rotate_stack(t_list **stack)
+void rev_rotate_stack(t_list **stack,int code)
 {
     t_list *tmp;
 
@@ -47,9 +50,13 @@ void rev_rotate_stack(t_list **stack)
     (*stack)->next = tmp;
     (*stack) = (*stack)->next;
     move_top_list((stack));
+    if (code == STACK_A)
+        dprintf(1,"rra\n");
+    else
+        dprintf(1,"rrb\n");
 
 }
-void swap_node(t_list **stack)
+void swap_node(t_list **stack,int code)
 {
     void *next;
     void *prev;
@@ -61,9 +68,13 @@ void swap_node(t_list **stack)
     (*stack)->next = (*stack)->prev;
     (*stack)->prev = NULL;
     move_top_list(stack);
+    if (code == STACK_A)
+        dprintf(1,"sa\n");
+    else
+        dprintf(1,"sb\n");
 }
 
-void push_node(t_list **src, t_list **dst)
+void push_node(t_list **src, t_list **dst,int code)
 {
     move_top_list(src);
     if (*dst == NULL)
@@ -87,4 +98,8 @@ void push_node(t_list **src, t_list **dst)
         (*dst)->prev->next = (*dst);
         (*dst) = (*dst)->prev;
     }
+    if (code == STACK_A)
+        dprintf(1,"pa\n");
+    else
+        dprintf(1,"pb\n");
 }

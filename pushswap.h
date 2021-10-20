@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:56:24 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/19 18:17:03 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/20 20:05:45 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ struct s_list
 {
 	t_list	*prev;
 	int		value;
+	int		order;
 	t_list	*next;
 };
 
@@ -54,10 +55,10 @@ int		stack_size(t_list *stack);
 
 /* Instruction Fonction */
  
-void	rotate_stack(t_list **stack);
-void	rev_rotate_stack(t_list **stack);
-void	swap_node(t_list **stack);
-void	push_node(t_list **src, t_list **dst);
+void	rotate_stack(t_list **stack,int code);
+void	rev_rotate_stack(t_list **stack,int code);
+void	swap_node(t_list **stack,int code);
+void	push_node(t_list **src, t_list **dst,int code);
 
 /* Algorythm Fonction */
 

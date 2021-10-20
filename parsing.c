@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:52:11 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/13 11:19:01 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/20 19:51:08 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void calc_order(t_list **stack)
 			move_top_list(&ptr);
 		}
 	}
+	ptr->order = ptr->value;
 	ptr->value = *tmp;
 	while (move_above_node(&ptr) && --tmp)
 		ptr->value = *tmp;
