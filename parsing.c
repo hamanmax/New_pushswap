@@ -6,16 +6,16 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:52:11 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/20 19:51:08 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 11:57:54 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int check_arg_format(int argc, char **argv)
+int		check_arg_format(int argc, char **argv)
 {
-	int i;
-	char *str;
+	int		i;
+	char	*str;
 
 	i = 1;
 	str = argv[i];
@@ -25,7 +25,7 @@ int check_arg_format(int argc, char **argv)
 		{
 			str++;
 			if (((*(str - 1) == '-' && (*str < '0' || *str > '9'))) ||
-				(*str == '-' && (*(str - 1) >= '0' && *(str - 1) <= '9')))
+			(*str == '-' && (*(str - 1) >= '0' && *(str - 1) <= '9')))
 				return (-1);
 		}
 		else if (*str == 0)
@@ -36,7 +36,7 @@ int check_arg_format(int argc, char **argv)
 	return (1 - 2 * (argc < 1));
 }
 
-int fill_list(t_list **stack, int argc, char **argv)
+int		fill_list(t_list **stack, int argc, char **argv)
 {
 	int		j;
 	long	nbr;
@@ -64,17 +64,16 @@ int fill_list(t_list **stack, int argc, char **argv)
 	return (0);
 }
 
-int	check_for_doublon(t_list *stack)
+int		check_for_doublon(t_list *stack)
 {
-	t_list *tmp;
-	int value;
-
-	tmp = stack->next;
+	t_list	*tmp;
+	int		value;
 
 	move_top_list(&stack);
+	tmp = stack->next;
 	while (stack->next)
 	{
-		if (stack->value == tmp->value)
+		if (stack->order == tmp->order)
 			return (-1);
 		if (tmp->next != NULL)
 			tmp = tmp->next;
@@ -90,7 +89,7 @@ int	check_for_doublon(t_list *stack)
 	return (0);
 }
 
-void calc_order(t_list **stack)
+void	calc_order(t_list **stack)
 {
 	t_list	*ptr;
 	int		*tmp;
@@ -99,7 +98,7 @@ void calc_order(t_list **stack)
 	tmp = ft_calloc(stack_size(*stack), sizeof(int));
 	while (1)
 	{	
-		if ((*stack)->value > ptr->value)
+		if ((*stack)->order > ptr->order)
 			(*tmp)++;
 		if (ptr->next)
 			ptr = ptr->next;
@@ -112,9 +111,9 @@ void calc_order(t_list **stack)
 			move_top_list(&ptr);
 		}
 	}
-	ptr->order = ptr->value;
-	ptr->value = *tmp;
+	ptr->value = ptr->order;
+	ptr->order = *tmp;
 	while (move_above_node(&ptr) && --tmp)
-		ptr->value = *tmp;
+		ptr->order = *tmp;
 	free(tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:56:24 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/20 20:05:45 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 12:11:42 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct s_list	t_list;
 struct s_list
 {
 	t_list	*prev;
-	int		value;
 	int		order;
+	int		value;
 	t_list	*next;
 };
 
@@ -45,23 +45,26 @@ void	move_bot_list(t_list **stack);
 void    *move_above_node(t_list **stack);
 void    move_below_node(t_list **stack);
 t_list	*ptr_top_node(t_list *stack);
-t_list	*ptr_last_node(t_list *stack);
+t_list	*ptr_bot_node(t_list *stack);
 t_list	*ptr_next_node(t_list *stack);
 t_list	*ptr_prev_node(t_list *stack);
 void	show_stack_state(t_list *stack_a, t_list *stack_b);
 void	show_node_info(t_list *node);
 int		stack_size(t_list *stack);
-
+void	free_stack(t_list *stack_a, t_list *stack_b);
 
 /* Instruction Fonction */
  
-void	rotate_stack(t_list **stack,int code);
-void	rev_rotate_stack(t_list **stack,int code);
-void	swap_node(t_list **stack,int code);
-void	push_node(t_list **src, t_list **dst,int code);
+void	rotate_stack(t_list **stack, int code);
+void	rev_rotate_stack(t_list **stack, int code);
+void	swap_node(t_list **stack, int code);
+void	push_node(t_list **src, t_list **dst, int code);
 
 /* Algorythm Fonction */
 
 void	algorithm(t_list **stack_a, t_list **stack_b);
+void	push_back(t_list **stack_a, t_list **stack_b);
+void	sort_stack(int tab[2], t_list **stack_a, t_list **stack_b);
+
 
 #endif

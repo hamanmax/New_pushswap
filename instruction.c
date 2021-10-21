@@ -6,17 +6,11 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:08:31 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 01:25:05 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 13:03:53 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
-
-void show_node_info(t_list *node)
-{
-    dprintf(2,"Value\t=%d\nCurrent\t=%p\nPrev\t=%p\nNext\t=%p\n\n",node->value,node,node->prev,node->next);
-}
-
 
 void rev_rotate_stack(t_list **stack,int code)
 {

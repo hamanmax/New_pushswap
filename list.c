@@ -6,19 +6,19 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:35:42 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 00:43:12 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 13:00:12 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void create_node(t_list **lst, int value)
+void    create_node(t_list **lst, int value)
 {
 	t_list *temp;
 
 	temp = malloc(sizeof(t_list));
-	temp->value = value;
-    temp->order = value;
+	temp->order = value;
+    temp->value = value;
     temp->prev = *lst;
 	temp->next = NULL;
     if ((*lst))
@@ -26,36 +26,16 @@ void create_node(t_list **lst, int value)
 	*lst = temp;
 }
 
-int stack_size(t_list *stack)
-{
-    int i;
-
-    i = 0;
-    move_top_list( &stack);
-    while (stack && stack->next)
-    {
-        i++;
-        stack = stack->next;
-    }
-    if (stack != NULL)
-        i++;
-    return (i);
-}
-
-void move_top_list(t_list **stack)
+void    move_top_list(t_list **stack)
 {
     while (*stack && (*stack)->prev)
-    {
         *stack = (*stack)->prev;
-    }
 }
 
-void move_bot_list(t_list **stack)
+void    move_bot_list(t_list **stack)
 {
     while (*stack && (*stack)->next)
-    {
         *stack = (*stack)->next;
-    }
 }
 
 
@@ -64,47 +44,15 @@ void    *move_above_node(t_list **stack)
     if ((*stack)->prev) 
     {
         *stack = (*stack)->prev;
-        return(*stack);
+        return (*stack);
     }
-    return(NULL);
+    return (NULL);
 }
 
 void    move_below_node(t_list **stack)
 {
     if ((*stack)->next) 
         *stack = (*stack)->next;
-}
-
-t_list *ptr_top_node(t_list *stack)
-{
-    while (stack->prev)
-    {
-        stack = (stack)->prev;
-    }
-    return (stack);
-}
-
-t_list *ptr_bot_node(t_list *stack)
-{
-    while (stack && (stack)->next)
-    {
-        stack = (stack)->next;
-    }
-    return (stack);
-}
-
-t_list *ptr_prev_node(t_list *stack)
-{
-    if (stack->prev)
-        return(stack->prev);
-    return (ptr_bot_node(stack));
-}
-
-t_list *ptr_next_node(t_list *stack)
-{
-    if (stack->next)
-        return(stack->next);
-    return (ptr_top_node(stack));
 }
 
 void show_stack_state(t_list *stack_a, t_list *stack_b)
@@ -126,11 +74,11 @@ void show_stack_state(t_list *stack_a, t_list *stack_b)
     while (i > 0)
     {
         if (stack_a != NULL && stack_b != NULL)
-            dprintf(2,"%d\t%d\n",stack_a->value,stack_b->value);
+            dprintf(2,"%d\t%d\n",stack_a->order,stack_b->order);
         else if (stack_a == NULL && stack_b)
-            dprintf(2,"R\t%d\n", stack_b->value);
+            dprintf(2,"R\t%d\n", stack_b->order);
         else
-            dprintf(2,"%d\tR\n",stack_a->value);
+            dprintf(2,"%d\tR\n",stack_a->order);
         if (stack_a != NULL)
         stack_a = stack_a->next;
         if (stack_b != NULL)

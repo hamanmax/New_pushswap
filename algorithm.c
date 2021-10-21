@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 10:26:46 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 02:11:18 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 13:05:23 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,96 +21,97 @@ bool stack_sorted(t_list *stack_a, t_list *stack_b)
 	move_top_list(&stack_a);
 	while (1)
 	{
-		if (stack_b->value > max)
+		if (stack_b->order > max)
 		{
-			max = stack_b->value;
+			max = stack_b->order;
 		}
 		if (stack_b->next == NULL)
 			break;
 		stack_b = stack_b->next;
 	}
 	move_top_list(&stack_b);
-	while (stack_b->value != 0)
+	while (stack_b->order != 0)
 	{
 		stack_b = stack_b->next;
-		if (stack_b->next == NULL && stack_b->value != 0)
+		if (stack_b->next == NULL && stack_b->order != 0)
 			return (false);
 	}
 	if (stack_a == NULL)
 	{
-		while (stack_b->value == i)
+		while (stack_b->order == i)
 		{
 			stack_b = ptr_prev_node(stack_b);
 			if (i  == max)
-				return(true);
+				return (true);
 			i++;
 		}
 	}
-	return(false);
+	return (false);
 }
 
-int calc_base_score(int *tab, t_list *value, t_list *stack_b)
+int	calc_base_score(int *tab, t_list *value, t_list *stack_b)
 {
-	int min = INT_MAX;
-	int max = INT_MIN;
-	int i = 0;
+	int min;
+	int max;
+	int i;
 
+	max = INT_MIN;
+	min = INT_MAX;
+	i = 0;
 	while (1) // Create min
 	{
-		if (min > stack_b->value)
-			min = stack_b->value;
+		if (min > stack_b->order)
+			min = stack_b->order;
 		if (stack_b->next == NULL)
 			break;
 		stack_b = stack_b->next;
 	}
-	while(1) // Create Max
+	while (1) // Create Max
 	{
-		if (max < stack_b->value)
-			max = stack_b->value;
+		if (max < stack_b->order)
+			max = stack_b->order;
 		if (stack_b->prev == NULL)
 			break;
 		stack_b = stack_b->prev;
 	}
-	if (value->value < min)
+	if (value->order < min)
 	{
-		while (stack_b->value != max)
+		while (stack_b->order != max)
 		{
 			i++;
 			stack_b = stack_b->next;
 		}
 		if (i > stack_size(ptr_top_node(stack_b)) / 2)
-			return((stack_size(ptr_top_node(stack_b)) - i) * -1);
+			return ((stack_size(ptr_top_node(stack_b)) - i) * -1);
 		return (i);
 	}
-	if (value->value > max)
+	if (value->order > max)
 	{
 		i++;
-		while (stack_b->value != min)
+		while (stack_b->order != min)
 		{
 			i++;
 			stack_b = stack_b->next;
 		}
 		if (i > stack_size(ptr_top_node(stack_b)) / 2)
-			return((stack_size(ptr_top_node(stack_b)) - i) * -1);
+			return ((stack_size(ptr_top_node(stack_b)) - i) * -1);
 		return (i);
 	}
 	move_top_list(&stack_b);
 	while (stack_b->next)
 	{
-		if (value->value > stack_b->value && value->value < ptr_prev_node(stack_b)->value )
+		if (value->order > stack_b->order && value->order < ptr_prev_node(stack_b)->order )
 			break;
 		i++;
 		stack_b = stack_b->next;
 	}
 		if (i > stack_size(ptr_top_node(stack_b)) / 2)
-			return((stack_size(ptr_top_node(stack_b)) - i) * -1);
+			return ((stack_size(ptr_top_node(stack_b)) - i) * -1);
 	return (i);
 }
 
 int	calc_operation(int *tab, t_list *stack_a, t_list *stack_b)
 {
-	int		base_score;
-	int		new_score;
 	t_list	*ptr;
 
 	ptr = ptr_top_node(stack_a);
@@ -137,7 +138,7 @@ void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 			{
 				rotate_stack(stack_a,3);
 				rotate_stack(stack_b,3);
-				dprintf(1,"rr\n");
+        		dprintf(1,"rr\n");
 				tab[STACK_B]--;
 				tab[STACK_A]--;
 			}
@@ -148,7 +149,7 @@ void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 			{
 				rotate_stack(stack_a,3);
 				rotate_stack(stack_b,3);
-				dprintf(1,"rr\n");
+        		dprintf(1,"rr\n");
 				tab[STACK_B]--;
 				tab[STACK_A]--;
 			}
@@ -162,7 +163,7 @@ void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 			{
 				rev_rotate_stack(stack_a,3);
 				rev_rotate_stack(stack_b,3);
-				dprintf(1,"rrr\n");
+        	dprintf(1,"rrr\n");
 				tab[STACK_B]++;
 				tab[STACK_A]++;
 			}
@@ -173,7 +174,7 @@ void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 			{
 				rev_rotate_stack(stack_a,3);
 				rev_rotate_stack(stack_b,3);
-				dprintf(1,"rrr\n");
+        		dprintf(1,"rrr\n");
 				tab[STACK_B]++;
 				tab[STACK_A]++;
 			}
@@ -183,21 +184,21 @@ void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 	{	
 		while (tab[STACK_A]-- > 0)
 		{
-			rotate_stack(stack_a,0);
+			rotate_stack(stack_a, STACK_A);
 		}
 	}
 	else
 	{	
 		while (tab[STACK_A]++ < 0)
 		{
-			rev_rotate_stack(stack_a,0);
+			rev_rotate_stack(stack_a, STACK_A);
 		}
 	}
 	if (tab[STACK_B] >= 0)
 	{
 		while (tab[STACK_B] > 0)
 		{
-			rotate_stack(stack_b,1);
+			rotate_stack(stack_b, STACK_B);
 			tab[STACK_B]--;
 		}
 	}
@@ -205,20 +206,22 @@ void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 	{
 		while (tab[STACK_B] < 0)
 		{
-			rev_rotate_stack(stack_b,1);
+			rev_rotate_stack(stack_b, STACK_B);
 			tab[STACK_B]++;
 		}
 	}
-	push_node(stack_a,stack_b,1);
+	push_node(stack_a, stack_b, STACK_B);
 	tab[STACK_B] = 0;
 	tab[STACK_A] = 0;
 }
 
-void push_back(t_list **stack_a,t_list **stack_b)
+void push_back(t_list **stack_a, t_list **stack_b)
 {
-	int maxsize = stack_size(*stack_b);
-	int opti = 0;
-	while ((*stack_b)->value != maxsize - 1)
+	const	int	maxsize = stack_size(*stack_b);
+	int			opti;
+
+	opti = 0;
+	while ((*stack_b)->order != maxsize - 1)
 	{
 		opti++;
 		*stack_b = (*stack_b)->next;
@@ -227,24 +230,14 @@ void push_back(t_list **stack_a,t_list **stack_b)
 	if (opti > maxsize / 2)
 	{
 		opti = maxsize - opti;	
-		while (opti > 0)
-		{
-			rev_rotate_stack(stack_b,1);
-			opti--;
-		}
+		while (opti-- > 0)
+			rev_rotate_stack(stack_b, STACK_B);
 	}
 	else
-	{
-		while (opti > 0)
-		{
-			rotate_stack(stack_b,1);
-			opti--;
-		}
-	}
+		while (opti-- > 0)
+			rotate_stack(stack_b, STACK_B);
 	while (stack_size(*stack_a) < maxsize)
-	{
-		push_node(stack_b,stack_a,0);
-	}
+		push_node(stack_b,stack_a, STACK_A);
 }
 
 void algorithm(t_list **stack_a, t_list **stack_b)
@@ -252,16 +245,13 @@ void algorithm(t_list **stack_a, t_list **stack_b)
 	int     op[2];
 	int		op2[2];
 	int     nbop;
-	t_list	*bestptr;
-	int i = 0;
-
 
 	op[STACK_A] = 0;
 	op[STACK_B] = 0;
 	nbop = INT_MAX;
-	push_node(stack_a, stack_b,1);
-	push_node(stack_a, stack_b,1);
-	while(stack_sorted(*stack_a, *stack_b) == false)
+	push_node(stack_a, stack_b, STACK_B);
+	push_node(stack_a, stack_b, STACK_B);
+	while (stack_sorted(ptr_top_node(*stack_a), ptr_top_node(*stack_b)) == 0)
 	{
 		while (1)
 		{
@@ -270,7 +260,6 @@ void algorithm(t_list **stack_a, t_list **stack_b)
 				nbop = calc_operation(op, *stack_a, *stack_b);
 				op2[STACK_A] = op[STACK_A];
 				op2[STACK_B] = op[STACK_B];
-				bestptr = *stack_a;
 			}
 			if ((*stack_a)->next == NULL)
 				break ;
@@ -278,9 +267,8 @@ void algorithm(t_list **stack_a, t_list **stack_b)
 		}
 		move_top_list(stack_b);
 		move_top_list(stack_a);
-		sort_stack(op2,stack_a,stack_b);
+		sort_stack(op2, stack_a, stack_b);
 		nbop = INT_MAX;
 	}  
-		move_top_list(stack_b);
-		push_back(stack_a,stack_b);
+		push_back(stack_a, stack_b);
 }
