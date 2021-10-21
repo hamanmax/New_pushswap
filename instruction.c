@@ -6,13 +6,13 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:08:31 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 13:03:53 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 13:11:15 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void rev_rotate_stack(t_list **stack,int code)
+void rev_rotate_stack(t_list **stack, int code)
 {
     t_list *tmp;
     tmp = *stack;
@@ -26,12 +26,12 @@ void rev_rotate_stack(t_list **stack,int code)
     (*stack)->prev = NULL;
     move_top_list(stack);
     if (code == STACK_A)
-        dprintf(1,"rra\n");
+        write(STDOUT_FILENO, "rra\n", 4);
     else if (code == STACK_B)
-        dprintf(1,"rrb\n");
+        write(STDOUT_FILENO, "rrb\n", 4);
 }
 
-void rotate_stack(t_list **stack,int code)
+void rotate_stack(t_list **stack, int code)
 {
     t_list *tmp;
 
@@ -45,9 +45,9 @@ void rotate_stack(t_list **stack,int code)
     (*stack) = (*stack)->next;
     move_top_list((stack));
     if (code == STACK_A)
-        dprintf(1,"ra\n");
+        write(STDOUT_FILENO, "ra\n", 3);
     else if (code == STACK_B)
-        dprintf(1,"rb\n");
+        write(STDOUT_FILENO, "rb\n", 3);
 }
 void swap_node(t_list **stack,int code)
 {
@@ -62,12 +62,12 @@ void swap_node(t_list **stack,int code)
     (*stack)->prev = NULL;
     move_top_list(stack);
     if (code == STACK_A)
-        dprintf(1,"sa\n");
+        write(STDOUT_FILENO, "sa\n", 3);
     else
-        dprintf(1,"sb\n");
+        write(STDOUT_FILENO, "sb\n", 3);
 }
 
-void push_node(t_list **src, t_list **dst,int code)
+void push_node(t_list **src, t_list **dst, int code)
 {
     move_top_list(src);
     if (*dst == NULL)
@@ -92,7 +92,7 @@ void push_node(t_list **src, t_list **dst,int code)
         (*dst) = (*dst)->prev;
     }
     if (code == STACK_A)
-        dprintf(1,"pa\n");
+        write(STDOUT_FILENO, "pa\n", 3);
     else
-        dprintf(1,"pb\n");
+        write(STDOUT_FILENO, "pb\n", 3);
 }

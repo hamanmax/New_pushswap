@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 10:26:46 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 13:05:23 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 13:10:27 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int	calc_operation(int *tab, t_list *stack_a, t_list *stack_b)
 	return (abs(tab[0]) + abs(tab[1]));	
 }
 
-void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
+void sort_stack(int tab[2], t_list **stack_a, t_list **stack_b)
 {
 	if (tab[STACK_A] > 0 && tab[STACK_B] > 0) // Optimisation RR
 	{
@@ -136,9 +136,9 @@ void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 		{
 			while (tab[STACK_B] > 0)
 			{
-				rotate_stack(stack_a,3);
-				rotate_stack(stack_b,3);
-        		dprintf(1,"rr\n");
+				rotate_stack(stack_a, 3);
+				rotate_stack(stack_b, 3);
+        		write(STDOUT_FILENO, "rr\n", 3);
 				tab[STACK_B]--;
 				tab[STACK_A]--;
 			}
@@ -147,9 +147,9 @@ void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 		{
 			while (tab[STACK_A] > 0)
 			{
-				rotate_stack(stack_a,3);
-				rotate_stack(stack_b,3);
-        		dprintf(1,"rr\n");
+				rotate_stack(stack_a, 3);
+				rotate_stack(stack_b, 3);
+        		write(STDOUT_FILENO, "rr\n", 3);
 				tab[STACK_B]--;
 				tab[STACK_A]--;
 			}
@@ -161,9 +161,9 @@ void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 		{
 			while (tab[STACK_A] < 0)
 			{
-				rev_rotate_stack(stack_a,3);
-				rev_rotate_stack(stack_b,3);
-        	dprintf(1,"rrr\n");
+				rev_rotate_stack(stack_a, 3);
+				rev_rotate_stack(stack_b, 3);
+        		write(STDOUT_FILENO, "rrr\n", 4);
 				tab[STACK_B]++;
 				tab[STACK_A]++;
 			}
@@ -172,9 +172,9 @@ void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 		{
 			while (tab[STACK_B] < 0)
 			{
-				rev_rotate_stack(stack_a,3);
-				rev_rotate_stack(stack_b,3);
-        		dprintf(1,"rrr\n");
+				rev_rotate_stack(stack_a, 3);
+				rev_rotate_stack(stack_b, 3);
+        		write(STDOUT_FILENO, "rrr\n", 4);
 				tab[STACK_B]++;
 				tab[STACK_A]++;
 			}
