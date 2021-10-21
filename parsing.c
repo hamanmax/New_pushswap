@@ -6,13 +6,13 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:52:11 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 11:57:54 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 18:06:52 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int		check_arg_format(int argc, char **argv)
+int	check_arg_format(int argc, char **argv)
 {
 	int		i;
 	char	*str;
@@ -24,8 +24,8 @@ int		check_arg_format(int argc, char **argv)
 		if ((*str >= '0' && *str <= '9') || *str == ' ' || *str == '-')
 		{
 			str++;
-			if (((*(str - 1) == '-' && (*str < '0' || *str > '9'))) ||
-			(*str == '-' && (*(str - 1) >= '0' && *(str - 1) <= '9')))
+			if (((*(str - 1) == '-' && (*str < '0' || *str > '9')))
+				|| (*str == '-' && (*(str - 1) >= '0' && *(str - 1) <= '9')))
 				return (-1);
 		}
 		else if (*str == 0)
@@ -36,7 +36,7 @@ int		check_arg_format(int argc, char **argv)
 	return (1 - 2 * (argc < 1));
 }
 
-int		fill_list(t_list **stack, int argc, char **argv)
+int	fill_list(t_list **stack, int argc, char **argv)
 {
 	int		j;
 	long	nbr;
@@ -50,11 +50,11 @@ int		fill_list(t_list **stack, int argc, char **argv)
 		nbr = ft_atol((*argv) + j);
 		if (nbr > INT_MAX || nbr < INT_MIN)
 			return (-1);
-		create_node(stack,(int)nbr);
+		create_node(stack, (int)nbr);
 		while (((*argv)[j] >= '0' && (*argv)[j] <= '9') || (*argv)[j] == '-')
 			j++;
 		while ((*argv)[j] == ' ')
-			j++;		
+			j++;
 		if ((*argv)[j] == 0)
 		{
 			argv++;
@@ -64,7 +64,7 @@ int		fill_list(t_list **stack, int argc, char **argv)
 	return (0);
 }
 
-int		check_for_doublon(t_list *stack)
+int	check_for_doublon(t_list *stack)
 {
 	t_list	*tmp;
 	int		value;
