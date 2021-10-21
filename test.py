@@ -1,4 +1,4 @@
 import random
-a = random.sample(range(1000), 500)
+a = random.sample(range(1000), 10)
 for x in range(len(a)):
-    print a[x],
+    print(a[x], end=" ")

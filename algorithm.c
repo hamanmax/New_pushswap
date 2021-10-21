@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 10:26:46 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/20 22:12:00 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 02:11:18 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int calc_base_score(int *tab, t_list *value, t_list *stack_b)
 			i++;
 			stack_b = stack_b->next;
 		}
+		if (i > stack_size(ptr_top_node(stack_b)) / 2)
+			return((stack_size(ptr_top_node(stack_b)) - i) * -1);
 		return (i);
 	}
 	if (value->value > max)
@@ -88,6 +90,8 @@ int calc_base_score(int *tab, t_list *value, t_list *stack_b)
 			i++;
 			stack_b = stack_b->next;
 		}
+		if (i > stack_size(ptr_top_node(stack_b)) / 2)
+			return((stack_size(ptr_top_node(stack_b)) - i) * -1);
 		return (i);
 	}
 	move_top_list(&stack_b);
@@ -98,6 +102,8 @@ int calc_base_score(int *tab, t_list *value, t_list *stack_b)
 		i++;
 		stack_b = stack_b->next;
 	}
+		if (i > stack_size(ptr_top_node(stack_b)) / 2)
+			return((stack_size(ptr_top_node(stack_b)) - i) * -1);
 	return (i);
 }
 
@@ -114,21 +120,94 @@ int	calc_operation(int *tab, t_list *stack_a, t_list *stack_b)
 		ptr = ptr_next_node(ptr);
 		tab[STACK_A]++;
 	}
+	if (tab[STACK_A] > stack_size(ptr_top_node(stack_a)) / 2)
+		tab[STACK_A] = (stack_size(ptr_top_node(stack_a)) - tab[STACK_A]) * -1;
 	move_top_list(&stack_b);
 	tab[STACK_B] = calc_base_score(tab, stack_a, ptr_top_node(stack_b));
-	return (tab[0]+tab[1]);	
+	return (abs(tab[0]) + abs(tab[1]));	
 }
 
 void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 {
-	while (tab[STACK_A]-- > 0)
+	if (tab[STACK_A] > 0 && tab[STACK_B] > 0) // Optimisation RR
 	{
-		rotate_stack(stack_a,0);
+		if (tab[STACK_A] >= tab[STACK_B])
+		{
+			while (tab[STACK_B] > 0)
+			{
+				rotate_stack(stack_a,3);
+				rotate_stack(stack_b,3);
+				dprintf(1,"rr\n");
+				tab[STACK_B]--;
+				tab[STACK_A]--;
+			}
+		}
+		else
+		{
+			while (tab[STACK_A] > 0)
+			{
+				rotate_stack(stack_a,3);
+				rotate_stack(stack_b,3);
+				dprintf(1,"rr\n");
+				tab[STACK_B]--;
+				tab[STACK_A]--;
+			}
+		}
 	}
-	while (tab[STACK_B] > 0)
+	else if (tab[STACK_A] < 0 && tab[STACK_B] < 0)
 	{
-		rotate_stack(stack_b,1);
-		tab[STACK_B]--;
+		if (tab[STACK_A] >= tab[STACK_B])
+		{
+			while (tab[STACK_A] < 0)
+			{
+				rev_rotate_stack(stack_a,3);
+				rev_rotate_stack(stack_b,3);
+				dprintf(1,"rrr\n");
+				tab[STACK_B]++;
+				tab[STACK_A]++;
+			}
+		}
+		else
+		{
+			while (tab[STACK_B] < 0)
+			{
+				rev_rotate_stack(stack_a,3);
+				rev_rotate_stack(stack_b,3);
+				dprintf(1,"rrr\n");
+				tab[STACK_B]++;
+				tab[STACK_A]++;
+			}
+		}
+	}
+	if (tab[STACK_A] >= 0)
+	{	
+		while (tab[STACK_A]-- > 0)
+		{
+			rotate_stack(stack_a,0);
+		}
+	}
+	else
+	{	
+		while (tab[STACK_A]++ < 0)
+		{
+			rev_rotate_stack(stack_a,0);
+		}
+	}
+	if (tab[STACK_B] >= 0)
+	{
+		while (tab[STACK_B] > 0)
+		{
+			rotate_stack(stack_b,1);
+			tab[STACK_B]--;
+		}
+	}
+	else
+	{
+		while (tab[STACK_B] < 0)
+		{
+			rev_rotate_stack(stack_b,1);
+			tab[STACK_B]++;
+		}
 	}
 	push_node(stack_a,stack_b,1);
 	tab[STACK_B] = 0;
@@ -138,9 +217,29 @@ void sort_stack(int tab[2],t_list **stack_a,t_list **stack_b)
 void push_back(t_list **stack_a,t_list **stack_b)
 {
 	int maxsize = stack_size(*stack_b);
+	int opti = 0;
 	while ((*stack_b)->value != maxsize - 1)
 	{
-		rotate_stack(stack_b,1);
+		opti++;
+		*stack_b = (*stack_b)->next;
+	}
+	move_top_list(stack_b);
+	if (opti > maxsize / 2)
+	{
+		opti = maxsize - opti;	
+		while (opti > 0)
+		{
+			rev_rotate_stack(stack_b,1);
+			opti--;
+		}
+	}
+	else
+	{
+		while (opti > 0)
+		{
+			rotate_stack(stack_b,1);
+			opti--;
+		}
 	}
 	while (stack_size(*stack_a) < maxsize)
 	{

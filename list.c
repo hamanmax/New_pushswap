@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:35:42 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/20 20:33:56 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 00:43:12 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,11 @@ void show_stack_state(t_list *stack_a, t_list *stack_b)
     while (i > 0)
     {
         if (stack_a != NULL && stack_b != NULL)
-            dprintf(2,"%d\t%d\n",stack_a->order,stack_b->order);
+            dprintf(2,"%d\t%d\n",stack_a->value,stack_b->value);
         else if (stack_a == NULL && stack_b)
-            dprintf(2,"R\t%d\n", stack_b->order);
+            dprintf(2,"R\t%d\n", stack_b->value);
         else
-            dprintf(2,"%d\tR\n",stack_a->order);
+            dprintf(2,"%d\tR\n",stack_a->value);
         if (stack_a != NULL)
         stack_a = stack_a->next;
         if (stack_b != NULL)
