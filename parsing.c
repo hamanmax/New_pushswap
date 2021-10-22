@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:52:11 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 18:06:52 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 19:08:59 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_arg_format(int argc, char **argv)
 	return (1 - 2 * (argc < 1));
 }
 
-int	fill_list(t_list **stack, int argc, char **argv)
+int	fill_list(t_list **stack, char **argv)
 {
 	int		j;
 	long	nbr;
@@ -67,7 +67,6 @@ int	fill_list(t_list **stack, int argc, char **argv)
 int	check_for_doublon(t_list *stack)
 {
 	t_list	*tmp;
-	int		value;
 
 	move_top_list(&stack);
 	tmp = stack->next;
@@ -82,7 +81,7 @@ int	check_for_doublon(t_list *stack)
 			stack = stack->next;
 			if (tmp->prev == stack)
 				break ;
-			while (tmp->prev != stack)
+			while (tmp && stack && tmp->prev != stack)
 				tmp = tmp->prev;
 		}
 	}

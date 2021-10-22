@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:56:24 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 18:03:24 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 19:11:55 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ struct s_list
 	t_list	*next;
 };
 
-/* Parsing Data */
+/* Parsing Function */
 
 int		check_arg_format(int argc, char **argv);
-int		fill_list(t_list **stack, int argc, char **argv);
+int		fill_list(t_list **stack, char **argv);
 int		check_for_doublon(t_list *stack);
 void	calc_order(t_list **stack);
 
-/* List Fonction */
+/* List Function */
 
 void	create_node(t_list **lst, int value);
-void	free_stack(t_list *stack_a, t_list *stack_b);
+void	free_stack(t_list *stack_a);
 void	move_top_list(t_list **stack);
 void	move_bot_list(t_list **stack);
 void	*move_above_node(t_list **stack);
@@ -52,25 +52,31 @@ t_list	*ptr_next_node(t_list *stack);
 t_list	*ptr_prev_node(t_list *stack);
 int		stack_size(t_list *stack);
 
-/* Instruction Fonction */
+/* Instruction Function */
 
 void	rotate_stack(t_list **stack, int code);
 void	rev_rotate_stack(t_list **stack, int code);
 void	swap_node(t_list **stack, int code);
 void	push_node(t_list **src, t_list **dst, int code);
+void	set_null_ptr(t_list **srcprev, t_list **dstprev, t_list **dstnext);
 
-/* Algorythm Fonction */
+/* Algorythm Function */
 
 void	algorithm(t_list **stack_a, t_list **stack_b);
-void	push_back(t_list **stack_a, t_list **stack_b);
-void	sort_stack(int tab[2], t_list **stack_a, t_list **stack_b);
 int		calc_operation(int *tab, t_list *stack_a, t_list *stack_b);
-int		calc_base_score(int *tab, t_list *value, t_list *stack_b);
+int		calc_base_score(t_list *value, t_list *stack_b);
+void	set_minmax(int tab[2], t_list *stack);
+
+/* Sorting Function */
+
+void	sort_stack(int tab[2], t_list **stack_a, t_list **stack_b);
+void	push_back(t_list **stack_a, t_list **stack_b);
 bool	stack_sorted(t_list *stack_a, t_list *stack_b);
 void	optimisation_rotate(int tab[2], t_list **stack_a, t_list **stack_b);
 void	optimisation_rev_rotate(int tab[2], t_list **stack_a, t_list **stack_b);
+int		set_stack_b_operation(t_list *stack, int minmax, bool sup);
 
-/* Debug Fonction */
+/* Debug Function */
 
 // void	show_node_info(t_list *node);
 // void	show_stack_state(t_list *stack_a, t_list *stack_b);

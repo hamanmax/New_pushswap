@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 10:26:46 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 17:59:49 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/21 19:11:34 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	set_stack_b_operation(t_list *stack, int minmax, bool sup)
 	return (i);
 }
 
-int	calc_base_score(int *tab, t_list *value, t_list *stack_b)
+int	calc_base_score(t_list *value, t_list *stack_b)
 {
 	int	minmax[2];
 	int	i;
@@ -90,7 +90,7 @@ int	calc_operation(int *tab, t_list *stack_a, t_list *stack_b)
 	if (tab[STACK_A] > stack_size(ptr_top_node(stack_a)) / 2)
 		tab[STACK_A] = (stack_size(ptr_top_node(stack_a)) - tab[STACK_A]) * -1;
 	move_top_list(&stack_b);
-	tab[STACK_B] = calc_base_score(tab, stack_a, ptr_top_node(stack_b));
+	tab[STACK_B] = calc_base_score(stack_a, ptr_top_node(stack_b));
 	return (abs(tab[0]) + abs(tab[1]));
 }
 
