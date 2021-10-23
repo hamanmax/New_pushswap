@@ -12,5 +12,6 @@ for i in `seq 1 $2`
 do
 	ARG=$(python3 -c "import random;a = random.sample(range($1 + $1), $1); print(' '.join([str(i) for i in a]))")
 	$3 $ARG | wc -l | tr -d ' ' >> tmp
+	$3 $ARG | ./checker_Mac $ARG
 	tail -n 1 tmp
 done

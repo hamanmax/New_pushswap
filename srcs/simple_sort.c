@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 00:27:30 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/23 00:34:30 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/23 02:24:57 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,6 @@ void	simple_sort(t_list **stack_a, t_list **stack_b)
 		sort_three_last(*stack_a, 2);
 	else if (stack_size(*stack_a) == 4)
 		four_size_sort(stack_a, stack_b);
-	else
+	else if (stack_size(*stack_a) == 5)
 		five_size_sort(stack_a, stack_b);
 }

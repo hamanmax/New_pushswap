@@ -3,5 +3,5 @@ bin/
 a.out*
 checker_linux
 checker_Mac
-test
-test-500
+push_swap
+tmp

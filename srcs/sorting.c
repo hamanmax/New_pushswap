@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 14:08:42 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/23 00:34:30 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/23 02:26:03 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ bool	stack_sorted(t_list *stack_a, t_list *stack_b)
 {
 	if (stack_b == NULL)
 	{
-		while (stack_a->order < stack_a->next->order)
+		while (stack_a->next && stack_a->order < stack_a->next->order)
 		{
 			stack_a = stack_a->next;
 			if (stack_a->next == NULL)
