@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 11:01:07 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/23 00:34:30 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/23 03:03:27 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (check_arg_format(argc, argv) == -1 || fill_list(&stack_a, argv) == -1
 		|| check_for_doublon(stack_a) == -1)
-		exit(write(STDOUT_FILENO, "Error\n", 7));
+		exit(write(STDERR_FILENO, "Error\n", 7));
 	move_top_list(&stack_a);
 	calc_order(&stack_a);
 	move_top_list(&stack_b);

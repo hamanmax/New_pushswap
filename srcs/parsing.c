@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:52:11 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/23 00:34:30 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/23 03:02:13 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_arg_format(int argc, char **argv)
 				return (-1);
 		}
 		else if (*str == 0)
-			i++;
+			str = argv[++i];
 		else
 			return (-1);
 	}
