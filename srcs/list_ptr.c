@@ -6,11 +6,11 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:10:10 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 18:00:47 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/23 00:34:30 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../includes/pushswap.h"
 
 t_list	*ptr_top_node(t_list *stack)
 {

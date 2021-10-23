@@ -6,7 +6,7 @@
 #    By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/25 08:58:00 by mhaman            #+#    #+#              #
-#    Updated: 2021/09/26 13:15:36 by mhaman           ###   ########lyon.fr    #
+#    Updated: 2021/10/23 00:46:45 by mhaman           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_CHAR	=	$(addprefix char/,  ft_isalpha.c  ft_isascii.c  ft_isdigit.c  ft_ispr
 
 SRC_PRINTF	=	$(addprefix printf/, apply_cu_flags.c  apply_d_flags.c  apply_s_option.c  apply_x_flags.c  check_zero_flag.c  ft_printf.c  ft_split_printf.c  parse_diux_option.c  parsing_line.c)
 
-SRC_MATH	=	$(addprefix math/,ft_atoi.c ft_atol.c ft_itoa_base.c  ft_itoa_base_long.c  ft_itoa.c  ft_itoa_unsigned.c  ft_pow.c  ft_round.c)
+SRC_MATH	=	$(addprefix math/,ft_atoi.c ft_atol.c ft_abs.c ft_itoa_base.c  ft_itoa_base_long.c  ft_itoa.c  ft_itoa_unsigned.c  ft_pow.c  ft_round.c)
 
 SRC_WRITE	=	$(addprefix write/, ft_putchar_fd.c  ft_putendl_fd.c  ft_putnbr_fd.c  ft_putstr_fd.c  get_next_line.c)
 

@@ -6,11 +6,11 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:35:42 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 18:05:15 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/23 00:34:30 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../includes/pushswap.h"
 
 void	create_node(t_list **lst, int value)
 {
@@ -84,6 +84,7 @@ void	move_below_node(t_list **stack)
 //         i--;
 //     }
 // }
+
 // void show_node_info(t_list *node)
 // {
 //     dprintf(2,"Value\t=%d\nCurrent\t=%p\nPrev\t=%p\nNext\t=%p\n\n",

@@ -6,7 +6,7 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:58:20 by mhaman            #+#    #+#             */
-/*   Updated: 2021/09/26 13:23:53 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/22 12:15:30 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdarg.h>
 # include "ftprintf.h"
 
+int		ft_abs(int nb);
 int		ft_atoi(const char *str);
 long	ft_atol(const char *str);
 void	ft_bzero(void *b, size_t len);

@@ -6,33 +6,11 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 10:26:46 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 19:11:34 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/23 00:34:30 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
-
-void	set_minmax(int tab[2], t_list *stack)
-{
-	tab[MIN] = INT_MAX;
-	tab[MAX] = INT_MIN;
-	while (1)
-	{
-		if (tab[MIN] > stack->order)
-			tab[MIN] = stack->order;
-		if (stack->next == NULL)
-			break ;
-		stack = stack->next;
-	}
-	while (1)
-	{
-		if (tab[MAX] < stack->order)
-			tab[MAX] = stack->order;
-		if (stack->prev == NULL)
-			break ;
-		stack = stack->prev;
-	}
-}
+#include "../includes/pushswap.h"
 
 int	set_stack_b_operation(t_list *stack, int minmax, bool sup)
 {
@@ -47,7 +25,7 @@ int	set_stack_b_operation(t_list *stack, int minmax, bool sup)
 		stack = stack->next;
 	}
 	if (i > stack_size(ptr_top_node(stack)) / 2)
-		return ((stack_size(ptr_top_node(stack)) - i) * -1);
+		return (i - stack_size(ptr_top_node(stack)));
 	return (i);
 }
 
@@ -72,8 +50,21 @@ int	calc_base_score(t_list *value, t_list *stack_b)
 		stack_b = stack_b->next;
 	}
 	if (i > stack_size(ptr_top_node(stack_b)) / 2)
-		return ((stack_size(ptr_top_node(stack_b)) - i) * -1);
+		return (i - stack_size(ptr_top_node(stack_b)));
 	return (i);
+}
+
+int	optimization_pre_sorting(int tab[2])
+{
+	if (tab[STACK_A] < 0 && tab[STACK_B] < 0)
+	{
+		if (-tab[STACK_A] > -tab[STACK_B])
+			return (-tab[STACK_A]);
+		return (-tab[STACK_B]);
+	}
+	if (tab[STACK_A] > tab[STACK_B])
+		return (tab[STACK_A]);
+	return (tab[STACK_B]);
 }
 
 int	calc_operation(int *tab, t_list *stack_a, t_list *stack_b)
@@ -88,10 +79,13 @@ int	calc_operation(int *tab, t_list *stack_a, t_list *stack_b)
 		tab[STACK_A]++;
 	}
 	if (tab[STACK_A] > stack_size(ptr_top_node(stack_a)) / 2)
-		tab[STACK_A] = (stack_size(ptr_top_node(stack_a)) - tab[STACK_A]) * -1;
+		tab[STACK_A] = (tab[STACK_A] - stack_size(ptr_top_node(stack_a)));
 	move_top_list(&stack_b);
 	tab[STACK_B] = calc_base_score(stack_a, ptr_top_node(stack_b));
-	return (abs(tab[0]) + abs(tab[1]));
+	if ((tab[STACK_A] < 0 && tab[STACK_B] < 0)
+		|| (tab[STACK_A] > 0 && tab[STACK_B] > 0))
+		return (optimization_pre_sorting(tab));
+	return (ft_abs(tab[0]) + ft_abs(tab[1]));
 }
 
 void	algorithm(t_list **stack_a, t_list **stack_b)

@@ -6,13 +6,13 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:56:24 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 19:11:55 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/23 00:34:52 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
-# include "42_libft/include/libft.h"
+# include "../42_libft/include/libft.h"
 # include <limits.h>
 # include <stdbool.h>
 
@@ -70,15 +70,19 @@ void	set_minmax(int tab[2], t_list *stack);
 /* Sorting Function */
 
 void	sort_stack(int tab[2], t_list **stack_a, t_list **stack_b);
+void	sort_three_last(t_list *stack_a, int mod);
+void	five_size_sort(t_list **stack_a, t_list **stack_b);
+void	four_size_sort(t_list **stack_a, t_list **stack_b);
+void	simple_sort(t_list **stack_a, t_list **stack_b);
 void	push_back(t_list **stack_a, t_list **stack_b);
 bool	stack_sorted(t_list *stack_a, t_list *stack_b);
-void	optimisation_rotate(int tab[2], t_list **stack_a, t_list **stack_b);
-void	optimisation_rev_rotate(int tab[2], t_list **stack_a, t_list **stack_b);
+void	optimization_rotate(int tab[2], t_list **stack_a, t_list **stack_b);
+void	optimization_rev_rotate(int tab[2], t_list **stack_a, t_list **stack_b);
 int		set_stack_b_operation(t_list *stack, int minmax, bool sup);
 
 /* Debug Function */
 
 // void	show_node_info(t_list *node);
-// void	show_stack_state(t_list *stack_a, t_list *stack_b);
+//void	show_stack_state(t_list *stack_a, t_list *stack_b);
 
 #endif

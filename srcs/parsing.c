@@ -6,11 +6,11 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:52:11 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 19:08:59 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/23 00:34:30 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../includes/pushswap.h"
 
 int	check_arg_format(int argc, char **argv)
 {

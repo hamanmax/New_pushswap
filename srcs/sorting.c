@@ -6,20 +6,20 @@
 /*   By: mhaman <mhaman@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 14:08:42 by mhaman            #+#    #+#             */
-/*   Updated: 2021/10/21 18:44:34 by mhaman           ###   ########lyon.fr   */
+/*   Updated: 2021/10/23 00:34:30 by mhaman           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../includes/pushswap.h"
 
 void	sort_stack(int tab[2], t_list **stack_a, t_list **stack_b)
 {
 	move_top_list(stack_b);
 	move_top_list(stack_a);
 	if (tab[STACK_A] > 0 && tab[STACK_B] > 0)
-		optimisation_rotate(tab, stack_a, stack_b);
+		optimization_rotate(tab, stack_a, stack_b);
 	else if (tab[STACK_A] < 0 && tab[STACK_B] < 0)
-		optimisation_rev_rotate(tab, stack_a, stack_b);
+		optimization_rev_rotate(tab, stack_a, stack_b);
 	if (tab[STACK_A] >= 0)
 		while (tab[STACK_A]-- > 0)
 			rotate_stack(stack_a, STACK_A);
@@ -62,7 +62,7 @@ void	push_back(t_list **stack_a, t_list **stack_b)
 		push_node(stack_b, stack_a, STACK_A);
 }
 
-void	optimisation_rotate(int tab[2], t_list **stack_a, t_list **stack_b)
+void	optimization_rotate(int tab[2], t_list **stack_a, t_list **stack_b)
 {
 	if (tab[STACK_A] >= tab[STACK_B])
 	{
@@ -88,7 +88,7 @@ void	optimisation_rotate(int tab[2], t_list **stack_a, t_list **stack_b)
 	}
 }
 
-void	optimisation_rev_rotate(int tab[2], t_list **stack_a, t_list **stack_b)
+void	optimization_rev_rotate(int tab[2], t_list **stack_a, t_list **stack_b)
 {
 	if (tab[STACK_A] >= tab[STACK_B])
 	{
